@@ -48,7 +48,7 @@ def split_documents(documents, chunk_size=500, chunk_overlap=50):
 
 
 # 4) Embedding Model Setup (OpenRouter / OpenAI)
-embeddings = OpenAIEmbeddings(api_key ="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",
+embeddings = OpenAIEmbeddings(api_key ="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",
              base_url="https://openrouter.ai/api/v1",
              model="openai/text-embedding-3-small"
                 )
@@ -61,17 +61,17 @@ embeddings = OpenAIEmbeddings(api_key ="sk-or-v1-2b8d7cb658d7e886baf26a4bc558a1c
 
 
 # 5) Vector Store Initialization (Pinecone)
-os.environ["PINECONE_API_KEY"] = "pcsk_36fBD1_BHTiYqAGxexbEbvpGN8H7majYggaxC7ywEm8JNEcBaqsZGrKoKv5dcBh6tSeRB7"
+os.environ["PINECONE_API_KEY"] = "pcsk_3TuF1P_5Z5c2FsB5ANnMcCrM2m6RoxgvkCNehbDfkQejZLBJSjxy7hnaknZFe6jTZmU9uZ"
 
 vectorstore = PineconeVectorStore(
     embedding=embeddings,
-    index_name="chatbot-bnf"
+    index_name="newchat2"
 )
 
 
 # 6) Language Model (LLM) Setup
 llm = ChatOpenAI(
-    api_key ="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",
+    api_key ="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",
     base_url="https://openrouter.ai/api/v1",
     model="openai/gpt-4o-mini",
     temperature=0
@@ -228,4 +228,5 @@ def calculate_dose(weight, dose_value, unit_type, frequency, mg_per_ml):
         "mg_dose": round(mg_dose, 2),
         "ml_dose": round(ml_dose, 2),
     }
+
 
